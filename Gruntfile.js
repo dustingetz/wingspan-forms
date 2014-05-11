@@ -117,7 +117,7 @@ module.exports = function (grunt) {
                     out: 'dist/wingspan-forms.js',
                     include: ['almond', 'wingspan-forms'],
                     exclude: ['jquery', 'underscore', 'react', 'require', 'text', 'underscore.string', 'kendo', 'q',
-                        'wingspan-contrib', 'wingspan-data', 'lodash']
+                        'wingspan-contrib', 'wingspan-data']
                 }
             },
             compileQuickStart: {
