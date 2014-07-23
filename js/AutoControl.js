@@ -79,6 +79,7 @@ define([
             controlProps.step = fieldInfo.stepValue;
             controlProps.minLength = fieldInfo.minLength;
             controlProps.maxLength = fieldInfo.maxLength;
+            controlProps.isPassword = fieldInfo.isPassword;
 
             if (fieldInfo.options) {
                 controlProps.dataSource = this.props.dataSource || fieldInfo.options.dataSource;

@@ -22,7 +22,8 @@ define([
                 noControl: false,
                 minLength: undefined,
                 maxLength: undefined,
-                id: undefined
+                id: undefined,
+                isPassword: false
             };
         },
 
@@ -30,7 +31,7 @@ define([
 
             /*jshint ignore:start */
             return (this.props.noControl ? (<span>{this.props.value || ''}</span>) : (
-                <input className="k-textbox" value={this.props.value || ''} onChange={this.onChange}
+                <input type={this.props.isPassword ? "password" : ""} className="k-textbox" value={this.props.value || ''} onChange={this.onChange}
                     placeholder={this.props.placeholder} id={this.props.id}
                     readOnly={this.props.readonly}
                     disabled={this.props.disabled} />
