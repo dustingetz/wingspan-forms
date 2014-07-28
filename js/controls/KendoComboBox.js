@@ -164,9 +164,15 @@ define([
                     return;
                 }
                 var self = this;
-                this.props.dataSource.fetch().then(function () {
+                if (_.isArray(this.props.dataSource)) {
+                  // inline datasource, no query
+                  $el.text(this.getDisplayValue(this.props.value, this.props.displayField));
+                }
+                else {
+                  this.props.dataSource.fetch().then(function () {
                     $el.text(this.getDisplayValue(self.props.dataSource.get(self.props.value), self.props.displayField));
-                }).done();
+                  }).done();
+                }
             }
             else {
                 // valueAsOption, so can skip the query.
