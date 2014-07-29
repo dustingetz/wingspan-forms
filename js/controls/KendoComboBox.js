@@ -49,7 +49,8 @@ define([
                 disabled: false,
                 readonly: false,
                 noControl: false,
-                placeholder: ''
+                placeholder: '',
+                forceValueAsId: false
             };
         },
 
@@ -134,7 +135,7 @@ define([
 
             // pass up the same structure as was originally passed down to us.
             var nextValue;
-            if (_.isString(this.props.value) || _.isNumber(this.props.value)) {
+            if (_.isString(this.props.value) || _.isNumber(this.props.value) || this.props.forceValueAsId) {
                 nextValue = (model ? model.get(this.props.valueField) : model);
             } else {
                 // Do not return the internal kendo model objects, since they're an implementation detail of the combo/store.
