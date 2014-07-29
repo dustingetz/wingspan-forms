@@ -23,6 +23,7 @@ define([
             return (
                 <FormField fieldInfo={this.props.fieldInfo} isValid={this.props.isValid} layout={this.props.layout}>
                     <AutoControl
+                        key={this.props.key}
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
                         onChange={this.props.onChange}

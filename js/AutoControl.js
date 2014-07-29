@@ -22,7 +22,7 @@ define([
         'time' : KendoTime,
         'boolean' : SwitchBox
     };
-    var CONTROL_PROPS = ['id', 'value', 'onChange', 'isValid', 'disabled', 'noControl'];
+    var CONTROL_PROPS = ['key', 'id', 'value', 'onChange', 'isValid', 'disabled', 'noControl'];
 
     var AutoControl = React.createClass({
         mixins: [ImmutableOptimizations(['onChange', 'dataSource'])],
@@ -44,6 +44,7 @@ define([
 
         getDefaultProps: function () {
             return {
+                key: undefined,
                 value: undefined,
                 onChange: undefined,
                 dataSource: undefined, // optional, usually comes as fieldInfo.options.dataSource. Only use here if the fieldInfo is stored in react state and you don't want to put a DataSource in react state.
