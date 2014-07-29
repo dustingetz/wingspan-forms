@@ -44,7 +44,7 @@ define([
             void classes;
             /*jshint ignore:start */
             var control = (this.props.noControl
-                ? (<span data-wspt-id="displayValue">{this.props.value}</span>)
+                ? (<span data-wspt-id="displayValue">{this.getDisplayValue()}</span>)
                 : (<select id={this.stableUniqueId}/>));
 
             return(
@@ -62,9 +62,9 @@ define([
             // for displaying as a string in noControl mode
             var displayVals = _.map(this.props.value, function (val) {
                 return val[this.props.displayField];
-            });
+            }.bind(this));
 
-            return str.join(displayVals, ', '); // l10n?
+            return str.join(', ', displayVals); // l10n?
         },
 
         componentDidMount: function () {
@@ -92,9 +92,11 @@ define([
 
             var kendoWidget = $el.data('kendoMultiSelect');
 
-            // the 'value' method is a getter/setter that gets/sets the valueField. It will look up the record
-            // in the store via the value set here.
-            kendoWidget.value((!_.isEmpty(this.props.value)) ? this.props.value[this.props.valueField] : '');
+            if(!_.isEmpty(this.props.value)) {
+              this.setVals(kendoWidget);
+            } else {
+              kendoWidget.value('');
+            }
 
             if (this.props.disabled) {
                 // disabled beats readonly
@@ -111,6 +113,16 @@ define([
             console.assert(_.isEqual(_.pick(nextProps, cantChange), _.pick(this.props, cantChange)), 'these props cant change after mount');
         },
 
+        setVals: function (kendoWidget) {
+          var vals = [];
+          var self = this;
+          _.each(this.props.value, function (item) {
+            vals.push(item[self.props.valueField]);
+          });
+
+          kendoWidget.value(vals);
+        },
+
         componentDidUpdate: function (prevProps, prevState) {
 
             if (this.props.noControl) {
@@ -125,13 +137,7 @@ define([
                 kendoWidget.setDataSource(this.props.dataSource);
             }
 
-            var vals = [];
-            var self = this;
-            _.each(this.props.value, function (item) {
-                vals.push(item[self.props.valueField]);
-            });
-
-            kendoWidget.value(vals);
+            this.setVals(kendoWidget);
 
             if (this.props.disabled) {
                 // disabled beats readonly
