@@ -15,7 +15,8 @@ define([
                 value: undefined,
                 onChange: undefined,
                 isValid: [true, ''],
-                dataSource: undefined
+                dataSource: undefined,
+                noControl: undefined
             };
         },
 
@@ -27,7 +28,8 @@ define([
                         fieldInfo={this.props.fieldInfo}
                         value={this.props.value}
                         onChange={this.props.onChange}
-                        dataSource={this.props.dataSource || undefined} />
+                        dataSource={this.props.dataSource || undefined}
+                        noControl={this.props.noControl} />
                 </FormField>
             );
         }
