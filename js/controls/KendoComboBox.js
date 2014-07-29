@@ -138,7 +138,7 @@ define([
                 nextValue = (model ? model.get(this.props.valueField) : model);
             } else {
                 // Do not return the internal kendo model objects, since they're an implementation detail of the combo/store.
-                nextValue = (model instanceof kendo.data.Model) ? model.toJSON() : model;
+                nextValue = model && model.toJSON();
             }
 
             // the KendoCombo maintains its own value state, which has just been set by a user interaction,
