@@ -42,7 +42,7 @@ define([
 
         /* jshint ignore:start */
         render: function () {
-            var fieldInfo = _.defaults(this.props.fieldInfo, {
+            var fieldInfo = _.defaults({}, this.props.fieldInfo, {
                 readOnly: false,
                 disabled: false,
                 label: '',
