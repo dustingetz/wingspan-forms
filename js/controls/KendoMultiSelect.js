@@ -34,27 +34,12 @@ define([
         },
 
         render: function () {
-
-            var classes = _.compact([
-                this.props.layout,
-                'formFieldMultiselect',
-                controlCommon.quadState(this.props.disabled, this.props.readonly, this.props.isValid, this.props.noControl)
-            ]).join(' ');
-
-            void classes;
             /*jshint ignore:start */
             var control = (this.props.noControl
                 ? (<span data-wspt-id="displayValue">{this.getDisplayValue()}</span>)
                 : (<select id={this.stableUniqueId}/>));
 
-            return(
-                <div className={classes}>
-                    <label className="formLabel" htmlFor={this.stableUniqueId}>{this.props.label}</label>
-                    <div className="formElement">
-                        {control}
-                    </div>
-                </div>
-            );
+            return control;
             /*jshint ignore:end */
         },
 
@@ -74,7 +59,7 @@ define([
                 return;
             }
 
-            var $el = $(this.getDOMNode()).find('#' + this.stableUniqueId);
+            var $el = $(this.getDOMNode()); //.find('#' + this.stableUniqueId);
 
             if (this.props.width) {
                 $el.width(340);
@@ -130,7 +115,7 @@ define([
                 return;
             }
 
-            var $el = $(this.getDOMNode()).find('#' + this.stableUniqueId);
+            var $el = $(this.getDOMNode()); //.find('#' + this.stableUniqueId);
             var kendoWidget = $el.data('kendoMultiSelect');
 
             if (prevProps.dataSource !== this.props.dataSource) {
